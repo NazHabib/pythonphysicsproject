@@ -1,0 +1,233 @@
+<div id="glowscript" class="glowscript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" href="https://www.glowscript.org/css/redmond/2.1/jquery-ui.custom.css" rel="stylesheet" />
+<link type="text/css" href="https://www.glowscript.org/css/ide.css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/glow.3.2.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/RSrun.3.2.min.js"></script>
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+
+// START JAVASCRIPT
+;(function() {;
+var ρσ_modules = {};
+ρσ_modules.pythonize = {};
+
+(function(){
+    function strings() {
+        var string_funcs, exclude, name;
+        string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
+        if (!arguments.length) {
+            exclude = (function(){
+                var s = ρσ_set();
+                s.jsset.add("split");
+                s.jsset.add("replace");
+                return s;
+            })();
+        } else if (arguments[0]) {
+            exclude = Array.prototype.slice.call(arguments);
+        } else {
+            exclude = null;
+        }
+        if (exclude) {
+            string_funcs = string_funcs.difference(set(exclude));
+        }
+        var ρσ_Iter0 = string_funcs;
+        ρσ_Iter0 = ((typeof ρσ_Iter0[Symbol.iterator] === "function") ? (ρσ_Iter0 instanceof Map ? ρσ_Iter0.keys() : ρσ_Iter0) : Object.keys(ρσ_Iter0));
+        for (var ρσ_Index0 of ρσ_Iter0) {
+            name = ρσ_Index0;
+            (ρσ_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name] = (ρσ_expr_temp = ρσ_str.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name];
+        }
+    };
+    if (!strings.__module__) Object.defineProperties(strings, {
+        __module__ : {value: "pythonize"}
+    });
+
+    ρσ_modules.pythonize.strings = strings;
+})();
+async function __main__() {
+"use strict";
+    var display = canvas;
+    var scene = canvas();
+
+    function input(arg) {
+    	arg = arg || {}
+    	if (arg.prompt !== undefined && arg.prompt != '') return prompt(arg.prompt)
+    	else if (typeof arg === 'string') return prompt(arg)
+    	else return prompt()
+    }
+
+    var version, print, arange, __name__, type, ρσ_ls, scene, ground, dist, target, height, platform, bird, hit, v0, dtheta, theta, px, py, momentum, g1, g, x, x0, y, y0, dt, t, trest, contact_t, fapp, tapp, tappm;
+    version = ρσ_list_decorate([ "3.2", "glowscript" ]);
+    Array.prototype['+'] = function(r) {return this.concat(r)}
+    Array.prototype['*'] = function(r) {return __array_times_number(this, r)}
+    window.__GSlang = "vpython";
+    print = GSprint;
+    arange = range;
+    __name__ = "__main__";
+    type = pytype;
+    var strings = ρσ_modules.pythonize.strings;
+
+    strings();
+    "4";
+    scene = ρσ_interpolate_kwargs.call(this, canvas, [ρσ_desugar_kwargs({width: 640, height: 480, center: vector(8, 5, 0), range: 8, background: color.blue})]);
+    "6";
+    ground = ρσ_interpolate_kwargs.call(this, box, [ρσ_desugar_kwargs({pos: vector(8, 1["-u"]()["*"](5), 0), length: 100, height: 10, width: .5, color: color.green})]);
+    "8";
+    dist = 5["+"](random()["*"](10));
+    "9";
+    target = ρσ_interpolate_kwargs.call(this, box, [ρσ_desugar_kwargs({pos: vector(dist, 1, 0), length: .5, height: 2, width: .5, color: color.red})]);
+    "10";
+    height = 1;
+    "11";
+    platform = ρσ_interpolate_kwargs.call(this, box, [ρσ_desugar_kwargs({pos: vector(1["-u"]()["*"](2), height["-"](1["*"](.25)), 0), length: 4, height: .5, width: .5, color: color.white})]);
+    "12";
+    bird = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(0, height["+"](.3), 0), radius: .3, color: color.yellow})]);
+    "17";
+    hit = 0;
+    "18";
+    while ((hit === 0 || typeof hit === "object" && ρσ_equals(hit, 0))) {
+        (await sleep(.1));
+        "21";
+        v0 = float(input("Diga a velocidade:"));
+        (await sleep(.1));
+        "22";
+        dtheta = float(input("Diga o angulo:"));
+        "23";
+        theta = (await radians(dtheta));
+        "30";
+        px = .1["*"](v0)["*"](cos(theta));
+        "31";
+        py = .1["*"](v0)["*"](sin(theta));
+        "32";
+        momentum = ρσ_interpolate_kwargs.call(this, arrow, [ρσ_desugar_kwargs({pos: bird.pos, axis: vector(px, py, 0), shaftwidth: .1, color: color.orange})]);
+        (await sleep(.1));
+        "37";
+        g1 = input("Diga um nome de um planeta do sistema solar");
+        "38";
+        if ((g1 === "terra" || typeof g1 === "object" && ρσ_equals(g1, "terra"))) {
+            "39";
+            g = 9.81;
+            "40";
+        } else if ((g1 === "marte" || typeof g1 === "object" && ρσ_equals(g1, "marte"))) {
+            "41";
+            g = 3.72;
+            "42";
+        } else if ((g1 === "jupiter" || typeof g1 === "object" && ρσ_equals(g1, "jupiter"))) {
+            "43";
+            g = 24.79;
+            "44";
+        } else if ((g1 === "mercurio" || typeof g1 === "object" && ρσ_equals(g1, "mercurio"))) {
+            "45";
+            g = 3.7;
+            "46";
+        } else if ((g1 === "saturno" || typeof g1 === "object" && ρσ_equals(g1, "saturno"))) {
+            "47";
+            g = 10.44;
+            "48";
+        } else if ((g1 === "venus" || typeof g1 === "object" && ρσ_equals(g1, "venus"))) {
+            "49";
+            g = 8.87;
+            "50";
+        } else if ((g1 === "neptuno" || typeof g1 === "object" && ρσ_equals(g1, "neptuno"))) {
+            "51";
+            g = 11.13;
+            "52";
+        } else if ((g1 === "uranus" || typeof g1 === "object" && ρσ_equals(g1, "uranus"))) {
+            "53";
+            g = 8.87;
+            "54";
+        } else {
+            g = 69.69;
+        }
+        "59";
+        x = x0 = 0;
+        "60";
+        y = y0 = height;
+        "61";
+        dt = 1e-4;
+        "62";
+        t = 0;
+        "69";
+        while (y[">"](0) && (x["<"](dist["-"](1["*"](.25))) || x[">"](dist["+"](.25))) || y[">"](2) && x[">="](dist["-"](1["*"](.25))) && x["<="](dist["+"](.25))) {
+            "71";
+            (await rate(5e3));
+            "73";
+            x = x0["+"](v0["*"](t)["*"](cos(theta)));
+            "74";
+            y = y0["+"](v0["*"](t)["*"](sin(theta)))["-"](1["*"](.5)["*"](g)["*"](Math.pow(t, 2)));
+            "75";
+            bird.pos = vector(x, y, 0);
+            "77";
+            px = .1["*"](v0)["*"](cos(theta));
+            "78";
+            py = .1["*"](v0)["*"](sin(theta))["-"](1["*"](.1)["*"](g)["*"](t));
+            "79";
+            momentum.pos = bird.pos;
+            "80";
+            momentum.axis = vector(px, py, 0);
+            "82";
+            t=t["+"](dt);
+        }
+        "84";
+        momentum.visible = false;
+        "87";
+        if (y[">="](0) && y["<="](2) && x[">="](dist["-"](1["*"](.25))) && x["<="](dist["+"](.25))) {
+            "90";
+            trest = .5["*"](100)["*"](g)["*"](.5);
+            "91";
+            contact_t = .01;
+            "92";
+            fapp = vector(px, py, 0)["/"](contact_t);
+            "93";
+            tapp = cross(fapp, vector(dist["+"](.25)["-"](1["*"](x)), 1["-u"]()["*"](y), 0));
+            "94";
+            tappm = mag(tapp);
+            "96";
+            if (tappm[">"](trest)) {
+                "98";
+                target.pos = vector(dist["+"](1.25), .25, 0);
+                "99";
+                target.length = 2;
+                "100";
+                target.height = .5;
+                "101";
+                print("Acertou, sheshh!");
+                "102";
+                hit = 1;
+                "104";
+            } else {
+                "105";
+                print("Acertou mas não caiu, lol.");
+            }
+            "108";
+            t = 0;
+            "109";
+            y0 = y;
+            "110";
+            while (y[">"](.3)) {
+                "111";
+                (await rate(5e3));
+                "112";
+                y = y0["-"](1["*"](.5)["*"](g)["*"](Math.pow(t, 2)));
+                "113";
+                bird.pos = vector(x, y, 0);
+                "114";
+                t=t["+"](dt);
+                "116";
+            }
+        } else {
+            "117";
+            print("Falhou, tente de novo.");
+        }
+    }
+};
+if (!__main__.__module__) Object.defineProperties(__main__, {
+    __module__ : {value: null}
+});
+
+;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
+// END JAVASCRIPT
+
+//--><!]]></script>
+</div>
